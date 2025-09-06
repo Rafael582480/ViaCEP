@@ -13,6 +13,15 @@ btn.addEventListener("click", function() {
     }
     // requisiçao
 
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then(resp => resp.json())
+    .then(dados => {
+        if(dados.erro) {
+            document.querySelector("#saida").textContent = "CEP nao encontrado"
+        } else {
+            document.querySelector("#saida").textContent += JSON.stringify(dados, null, 2)
+        }
+    })
 
 
 })
